@@ -7,9 +7,10 @@ import './index.css';
 import App from './App';
 import allReducers from './store/reducers';
 import reportWebVitals from './reportWebVitals';
+import store from './store/store';
 
 let devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-const store = createStore(allReducers, devTools);
+// const store = createStore(allReducers, devTools);
 
 ReactDOM.render(
   <React.StrictMode>
