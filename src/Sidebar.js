@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import {
   CDBSidebar,
   CDBSidebarContent,
@@ -10,12 +12,15 @@ import {
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+  const { darkMode, lightTheme, darkTheme } = useSelector(state => state.theme);
+  const themeMode = darkMode ? darkTheme : lightTheme;
 
   return (
     <div
       className={`app`}
       style={{ display: "flex", height: "100%", overflow: "scroll initial" }}>
-      <CDBSidebar textColor="#fff" backgroundColor="#333">
+      <CDBSidebar textColor={themeMode.color} backgroundColor={themeMode.bgColor}>
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <a href="/" className="text-decoration-none" style={{ color: "inherit" }}>
             mySchool

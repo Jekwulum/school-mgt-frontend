@@ -6,13 +6,13 @@ import { Header } from "./Navbar.style";
 
 
 const Navbar = () => {
-  const { darkMode, lightTheme, darkTheme } = useSelector(state => state.theme);
   const dispatch = useDispatch();
-  let theme = darkMode ? darkTheme : lightTheme;
-  console.log('-----', theme);
+  const { darkMode, lightTheme, darkTheme } = useSelector(state => state.theme);
+  let themeMode = darkMode ? darkTheme : lightTheme;
+  console.log('-----', themeMode);
 
   return (
-    <Header style={{ background: theme.bgColor, color: theme.color }}>
+    <Header style={{ background: themeMode.bgColor, color: themeMode.color }}>
       <CDBNavbar dark expand="md" scrolling className="justify-content-start">
         <CDBInput type="search" size="md" hint="Search" className="mb-n4 mt-n3 input-nav" />
         <div className="ml-auto">
