@@ -8,9 +8,14 @@ import App from './App';
 import allReducers from './store/reducers';
 import reportWebVitals from './reportWebVitals';
 
+let devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+const store = createStore(allReducers, devTools);
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
