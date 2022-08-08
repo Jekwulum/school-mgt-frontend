@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CDBNavbar, CDBInput } from "cdbreact";
 
 import { Header } from "./Navbar.style";
+import { toggleTheme } from "./store/slice/themeSlice";
 
 
 const Navbar = () => {
@@ -11,13 +12,19 @@ const Navbar = () => {
   let themeMode = darkMode ? darkTheme : lightTheme;
   console.log('-----', themeMode);
 
+  const handleThemeToggle = (e) => {
+    e.preventDefault();
+    dispatch(toggleTheme());
+  };
+
   return (
     <Header style={{ background: themeMode.bgColor, color: themeMode.color }}>
       <CDBNavbar dark expand="md" scrolling className="justify-content-start">
         <CDBInput type="search" size="md" hint="Search" className="mb-n4 mt-n3 input-nav" />
         <div className="ml-auto">
-          <i className="fas fa-bell"></i>
-          <i className="fas fa-comment-alt mx-4"></i>
+          <i className={`${darkMode ? "fas fa-sun" : "fas fa-adjust"}`} onClick={handleThemeToggle} style={{ margin: '10px', fontSize: '30px' }}></i>
+          <i className="fas fa-bell" style={{ margin: '10px', fontSize: '30px' }}></i>
+          <i className="fas fa-comment-alt mx-4" style={{ margin: '10px', fontSize: '30px' }}></i>
           <img alt="panelImage" src="img/pane/pane4.png" style={{ width: "3rem", height: "3rem" }} />
         </div>
       </CDBNavbar>
