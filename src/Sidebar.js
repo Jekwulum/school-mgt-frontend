@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import {
   CDBSidebar,
@@ -12,7 +12,6 @@ import {
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
-  const dispatch = useDispatch();
   const { darkMode, lightTheme, darkTheme } = useSelector(state => state.theme);
   const themeMode = darkMode ? darkTheme : lightTheme;
 
