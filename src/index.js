@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import './index.css';
 import 'font-awesome/css/font-awesome.min.css';
 import App from './App';
-import allReducers from './store/reducers';
 import reportWebVitals from './reportWebVitals';
 import store from './store/store';
 

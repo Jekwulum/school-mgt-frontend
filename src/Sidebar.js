@@ -22,7 +22,7 @@ const Sidebar = () => {
       <CDBSidebar textColor={themeMode.color} backgroundColor={themeMode.bgColor}>
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <a href="/" className="text-decoration-none" style={{ color: "inherit" }}>
-            mySchool
+            <i>mySchool</i>
           </a>
         </CDBSidebarHeader>
 
