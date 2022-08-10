@@ -24,7 +24,7 @@ const Navbar = () => {
         <div className="ml-auto">
           <i className={`${darkMode ? "fas fa-sun" : "fas fa-adjust"}`} onClick={handleThemeToggle} style={{ margin: '10px', fontSize: '30px' }}></i>
           <i className="fas fa-bell" style={{ margin: '10px', fontSize: '30px' }}></i>
-          <i className="fas fa-comment-alt mx-4" style={{ margin: '10px', fontSize: '30px' }}></i>
+          <i className="fas fa-comment-alt mx-3" style={{ margin: '10px', fontSize: '30px' }}></i>
           <img alt="panelImage" src="img/pane/pane4.png" style={{ width: "3rem", height: "3rem" }} />
         </div>
       </CDBNavbar>
