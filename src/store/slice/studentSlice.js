@@ -1,35 +1,36 @@
-import { createSlice } from "@reduxjs/toolkit";
-// import * as Constants from "../constants/management.constants";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Loading } from "../../utils/helpers/constants";
 import ManagementService from "../../utils/services/management.services";
 
-export const studentSlice = createSlice({
-  name: 'student',
-  initialState: {
-    students: [],
-    loadingStudents: ""
-  },
-  reducers: {
-    fetchStudents: async (state) => {
-      try {
-        const { data: responseData } = await ManagementService.getStudents();
-        if (responseData) {
-          console.log(responseData.data, "ooooo")
-          state =  { ...state, students: responseData.data, loadingStudents: Loading.SUCCESS }
-        }
-        else if (responseData === undefined) {
-          return { ...state, loadingStudents: Loading.FAILED }
-        }
-        else {
-          return { ...state, loadingStudents: Loading.FAILED }
-        }
-      } catch (error) {
-        console.log('errorrr', error)
-      }
-    }
-  }
+
+const initialState = {
+  students: [],
+  loadingStudents: "",
+  error: null
+}
+
+export const fetchStudents = createAsyncThunk('students/fetchStudents', async () => {
+  const { data: responseData } = await ManagementService.getStudents();
+  return responseData.data;
 });
 
-export const { fetchStudents } = studentSlice.actions;
+export const studentSlice = createSlice({
+  name: 'students',
+  initialState,
+  extraReducers(builder) {
+    builder
+      .addCase(fetchStudents.pending, (state, action) => {
+        state.loadingStudents = Loading.FETCHING
+      })
+      .addCase(fetchStudents.fulfilled, (state, action) => {
+        state.loadingStudents = Loading.SUCCESS
+        state.students = action.payload
+      })
+      .addCase(fetchStudents.rejected, (state, action) => {
+        state.loadingStudents = Loading.FAILED
+        state.error = action.error.message
+      })
+  },
+});
 
 export default studentSlice.reducer;
