@@ -10,7 +10,6 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { darkMode, lightTheme, darkTheme } = useSelector(state => state.theme);
   let themeMode = darkMode ? darkTheme : lightTheme;
-  console.log('-----', themeMode);
 
   const handleThemeToggle = (e) => {
     e.preventDefault();
