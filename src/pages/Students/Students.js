@@ -10,7 +10,7 @@ import { Loading } from '../../utils/helpers/constants';
 
 const Students = () => {
   const dispatch = useDispatch();
-  const { students, loadingStudents, error } = useSelector(state => state.students);
+  const { students, loadingStudents } = useSelector(state => state.students);
   const loadState = loadingStudents !== Loading.SUCCESS;
 
   useEffect(() => {
@@ -27,7 +27,8 @@ const Students = () => {
 
       <div style={{ flex: "1 1 auto", display: "flex", flexFlow: "column", height: "100vh", overflowY: "hidden" }}>
         <Navbar />
-        {loadState ? <SphereLoader /> :
+        {
+          loadState ? <SphereLoader /> :
           <Body studentsData={students} />
         }
       </div>

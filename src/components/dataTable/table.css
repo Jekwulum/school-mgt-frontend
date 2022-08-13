@@ -1,0 +1,22 @@
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td, table th {
+  /* border: 1px solid #ddd; */
+  padding: 8px;
+}
+
+/* table tr:nth-child(even){background-color: #494985;} */
+.dark tr:nth-child(even){background-color: #0E0E23;}
+.light tr:nth-child(even){background-color: #aeb4d8;}
+
+/* table tr:hover {background-color: #ddd;} */
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+}
