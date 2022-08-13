@@ -7,6 +7,7 @@ import SphereLoader from '../../components/loaders/SphereLoaders';
 import Sidebar from '../../Sidebar';
 import { fetchStudents } from '../../store/slice/studentSlice';
 import { Loading } from '../../utils/helpers/constants';
+import { SphereLoader2 } from '../../components/loaders/SphereLoaders';
 
 const Students = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Students = () => {
       <div style={{ flex: "1 1 auto", display: "flex", flexFlow: "column", height: "100vh", overflowY: "hidden" }}>
         <Navbar />
         {
-          loadState ? <SphereLoader /> :
+          loadState ? <SphereLoader2 /> :
           <Body studentsData={students} />
         }
       </div>
