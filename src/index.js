@@ -8,7 +8,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store/store';
 
-let devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+// let devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 // const store = createStore(allReducers, devTools);
 
 ReactDOM.render(

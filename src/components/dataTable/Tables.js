@@ -1,53 +1,74 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { useTable } from "react-table";
 import { CDBTable, CDBTableHeader, CDBTableBody } from "cdbreact";
 
-const getKeyByValue = (object, value) => {
-  return Object.keys(object).find(key => object[key] === value);
-};
-
-// const buildColumnsFromItems = (items) => {
-//   let headers = [];
-//   items.forEach(item => {
-//     if (item.push !== "id" || items)
-//     headers.push(item.day);
-//   });
-
-//   let columns = [];
-//   headers.forEach(header => {
-//     columns.push({
-//       Header: header,
-//       accessor: header
-//     })
-//   });
-
-//   return columns;
-// }
+import './table.css';
 
 export const TableResponsive = ({ data }) => {
   return (
     <CDBTable responsive>
       <CDBTableHeader>
-        <tr>
-          {Object.keys(data[0]).map((key) => {
-            if (key === "id") { }
-            else return (<th>{key}</th>)
-          })}
-        </tr>
       </CDBTableHeader>
-      <CDBTableBody>
-        {data.map((item) => (
-          <tr key={item.id}>
-            {Object.values(item).map((val) => {
 
-              let valKey = getKeyByValue(item, val)
-              console.log(valKey, val);
-              if (valKey === "photo") { return (<td><img src={val} alt={""} width={"120px"} height={"100px"} /></td>) }
-              else if (valKey === "id") { }
-              else return (<td>{val}</td>)
-            })}
-          </tr>
-        ))}
+      <CDBTableBody>
       </CDBTableBody>
     </CDBTable>
+  )
+};
+
+export const BasicTable = ({ columnsHeaders, data }) => {
+  const { darkMode, lightTheme, darkTheme } = useSelector(state => state.theme);
+  const themeMode = darkMode ? darkTheme : lightTheme;
+
+  const tableObject = [...columnsHeaders];
+  const columns = useMemo(() => tableObject, []);
+  const tableData = useMemo(() => data, []);
+
+  const tableInstance = useTable({
+    columns,
+    data: tableData
+  });
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow } = tableInstance;
+
+  return (
+    <div>
+      <table {...getTableProps()} className={darkMode ? "dark" : "light"}>
+        <thead>
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                <th {...column.getHeaderProps()} style={{
+                  backgroundColor: themeMode.bgColor,
+                  color: themeMode.color
+                }}>
+                  {column.render('Header')}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map((row) => {
+            prepareRow(row)
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map((cell) => {
+                  return <td {...cell.getCellProps()}
+                    style={{ color: `${themeMode.textColor}` }}>
+                    {cell.render('Cell')}</td>
+                })}
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    </div>
   )
 };

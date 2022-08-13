@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
+import { NavLink } from "react-router-dom";
 import {
   CDBSidebar,
   CDBSidebarContent,
@@ -9,7 +9,6 @@ import {
   CDBSidebarMenu,
   CDBSidebarMenuItem
 } from "cdbreact";
-import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const { darkMode, lightTheme, darkTheme } = useSelector(state => state.theme);
