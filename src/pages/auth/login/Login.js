@@ -19,7 +19,6 @@ const Login = () => {
   const [errorStatus, setLoginErrorStatus] = useState(false);
 
   if (isLoggedIn) return <Redirect to={{ pathname: '/' }} />;
-  console.log('status', loading);
 
   const handleLogin = async () => {
     setLoginErrorStatus(false);
@@ -45,23 +44,20 @@ const Login = () => {
   };
 
   const validateLogin = async responseData => {
-    console.log("validate----------");
     const tokenData = EncryptHelper.jwtDecode(responseData.access);
     if (tokenData) {
+      await setLoggedInUser(responseData.access, tokenData);
       setLoadingStatus(false);
-      console.log("here 1");
       history.push('/');
     } else {
       setLoginErrorStatus(false);
-      console.log("here 2");
       setLoadingStatus(false);
     };
   };
 
-  const setLoggedInUser = async (userToken,  user) => {
-    console.log("userr", user);
-    await TokenHelper.saveToken(userToken);
-    await TokenHelper.saveUserId(user.sub);
+  const setLoggedInUser = async (token, user) => {
+    await TokenHelper.saveToken(token);
+    await TokenHelper.saveUserId(user.user_id);
   };
 
   return (
