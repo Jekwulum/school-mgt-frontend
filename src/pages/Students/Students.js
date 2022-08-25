@@ -3,7 +3,6 @@ import { batch, useSelector, useDispatch } from 'react-redux';
 
 import Body from './Body';
 import Navbar from '../../Navbar';
-import SphereLoader from '../../components/loaders/SphereLoaders';
 import Sidebar from '../../Sidebar';
 import { fetchStudents } from '../../store/slice/studentSlice';
 import { Loading } from '../../utils/helpers/constants';

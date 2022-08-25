@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CDBNavbar, CDBInput } from "cdbreact";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 import { Header } from "./Navbar.style";
 import { removeLoggedInUser } from "./store/actions/auth.action";

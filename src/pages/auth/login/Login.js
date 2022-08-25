@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 
 import EncryptHelper from '../../../utils/helpers/encryptHelper';
@@ -9,9 +8,9 @@ import AuthService from '../../../utils/services/auth.service';
 
 const Login = () => {
 
-  const dispatch = useDispatch(),
-    history = useHistory(),
-    isLoggedIn = TokenHelper.checkIfLoggedIn();
+  
+  const history = useHistory();
+  const isLoggedIn = TokenHelper.checkIfLoggedIn();
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoadingStatus] = useState(false);

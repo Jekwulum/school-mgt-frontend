@@ -14,7 +14,8 @@ const Sidebar = () => {
   const { darkMode, lightTheme, darkTheme } = useSelector(state => state.theme);
   const themeMode = darkMode ? darkTheme : lightTheme;
 
-  let iconMarginLeft = "8px";
+  const iconFontSize = "22px";
+  const iconMarginLeft = "8px";
 
   return (
     <div
@@ -41,13 +42,13 @@ const Sidebar = () => {
             </NavLink>
             <NavLink exact to="/students" activeClassName="activeClicked">
               <CDBSidebarMenuItem>
-                <i className="zmdi zmdi-graduation-cap" style={{ fontSize: "22px" }}></i>
+                <i className="zmdi zmdi-graduation-cap" style={{ fontSize: iconFontSize }}></i>
                 <span style={{ marginLeft: iconMarginLeft }}>students</span>
               </CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/staff" activeClassName="activeClicked">
               <CDBSidebarMenuItem>
-                <i className="zmdi zmdi-accounts-list" style={{ fontSize: "22px" }}></i>
+                <i className="zmdi zmdi-accounts-list" style={{ fontSize: iconFontSize }}></i>
                 <span style={{ marginLeft: iconMarginLeft }}>Staff</span>
               </CDBSidebarMenuItem>
             </NavLink>
