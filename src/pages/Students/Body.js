@@ -29,7 +29,7 @@ const Body = ({ studentsData }) => {
     { value: 'female', label: 'female' }
   ];
 
-  const disableAddButton = !firstName || !lastName || !otherName || !email || !password || !confirmPassword || !gender || !dob || !photo;
+  const disableAddButton = !firstName || !lastName || !email || !password || !confirmPassword || !gender || !dob || !photo;
   const addStudent = () => setAddNewStudent(!addNewStudent);
 
   const handlePhoto = (e) => {
@@ -152,7 +152,6 @@ const Body = ({ studentsData }) => {
                     />
                   </div>
                   <div className="col">
-
                     <label className="form-label">Phone</label>
                     <input type="text" className="form-control" value={phone}
                       onChange={event => setPhone(event.target.value)}
