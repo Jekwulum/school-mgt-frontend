@@ -7,13 +7,17 @@ import toast from 'react-hot-toast';
 import { studentsTableConfig } from '../../utils/helpers/dataTableConfig';
 import { BasicTable } from '../../components/dataTable/Tables';
 import ManagementService from '../../utils/services/management.services';
+import StudentInfoModal from '../../components/modals/StudentInfoModal';
 
 const Body = ({ studentsData }) => {
   const { darkMode, lightTheme, darkTheme } = useSelector(state => state.theme);
   const themeMode = darkMode ? darkTheme : lightTheme;
 
   const [addNewStudent, setAddNewStudent] = useState(false);
+  const [infoRender, setInfoRender] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [studentData, setStudentData] = useState({});
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [otherName, setOtherName] = useState("");
@@ -29,8 +33,25 @@ const Body = ({ studentsData }) => {
     { value: 'female', label: 'female' }
   ];
 
+  const actionColumn = {
+    Header: 'Action', accessor: 'action',
+    Cell: row => (
+      <div className='d-flex'>
+        <span className="text-center pointer m-auto">
+          <i style={{ fontSize: "22px" }} className="zmdi zmdi-edit"></i>
+        </span>
+        <span className="text-center pointer m-auto">
+          <i className="zmdi zmdi-delete" style={{ fontSize: "22px", color: "#FC0303" }}></i>
+        </span>
+      </div>
+    )
+  };
+
+  const tableObject = [...studentsTableConfig, actionColumn];
   const disableAddButton = !firstName || !lastName || !email || !password || !confirmPassword || !gender || !dob || !photo;
   const addStudent = () => setAddNewStudent(!addNewStudent);
+  const changeInfoRenderStatus = () => setInfoRender(false);
+  const studentInfoModal = infoRender ? <StudentInfoModal onchange={changeInfoRenderStatus} data={studentData} /> : null;
 
   const handlePhoto = (e) => {
     e.preventDefault();
@@ -56,7 +77,7 @@ const Body = ({ studentsData }) => {
       gender, dob, photo, phone,
     };
 
-    const {data: responseData} = await ManagementService.addStudent(payload);
+    const { data: responseData } = await ManagementService.addStudent(payload);
     if (responseData.status !== "SUCCESS") toast.error(responseData.message);
     else toast.success(responseData.message);
 
@@ -68,6 +89,7 @@ const Body = ({ studentsData }) => {
     <div style={{ height: "100%", backgroundColor: themeMode.bodyColor, color: themeMode.textColor }}>
       <div style={{ padding: "10px 3%", height: "calc(100% - 0px)", overflowY: "scroll", backgroundColor: themeMode.bodyColor }}>
         {/* <div style={{ display: "grid", gridTemplateColumns: "repeat(1, minmax(200px, 700px))" }}> */}
+        {studentInfoModal}
         <div className='d-flex justify-content-between'>
           <h1 className='mb-5 mt-2'>Students</h1>
           <button onClick={addStudent} type='button' className='mt-4 h-75 p-2 border-0 rounded' style={{ backgroundColor: themeMode.bgColor, color: "#fff" }}>
@@ -170,7 +192,7 @@ const Body = ({ studentsData }) => {
             </form>
           </div> : ""}
         </div>
-        <BasicTable columnsHeaders={studentsTableConfig} data={studentsData} />
+        <BasicTable columnsHeaders={tableObject} data={studentsData} />
       </div>
     </div>
   )
