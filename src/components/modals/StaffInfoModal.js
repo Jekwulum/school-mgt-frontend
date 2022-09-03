@@ -31,20 +31,22 @@ const StaffInfoModal = ({ onchange, data, themeMode }) => {
   const upload = async (e) => {
     e.preventDefault();
     setLoading(true);
-  };
 
-  const payload = {
-    first: firstName, last: lastName, other: otherName,
-    gender, phone, is_admin: adminStatus
-  };
-  console.log(payload);
+    const payload = {
+      first: firstName, last: lastName, other: otherName,
+      gender, phone, is_admin: adminStatus
+    };
+    console.log(payload);
 
-  // const { data: responseData } = await ManagementService.updateStaff(data.staff_id, payload);
-  // if (responseData.status !== "SUCCESS") toast.error(responseData.message);
-  // else {
-  //   toast.success(responseData.message);
-  //   onchange();
-  // };
+    const { data: responseData } = await ManagementService.updateStaff(data.staff_id, payload);
+    if (responseData.status !== "SUCCESS") toast.error(responseData.message);
+    else {
+      toast.success(responseData.message);
+      onchange();
+    };
+
+    setLoading(false);
+  };
 
   return (
     <div style={{ backgroundColor: themeMode.bodyColor }}>
@@ -93,7 +95,7 @@ const StaffInfoModal = ({ onchange, data, themeMode }) => {
 
                 <div className="row mt-2">
                   <div className="col">
-                    <label className="form-label">Admin Status<span className="tx-danger">*</span></label>
+                    <label className="form-label">Admin Status </label>
                     <Select options={ADMIN_STATUS}
                       isClearable={false} isSearchable={true}
                       maxMenuHeight={250} menuPlacement="bottom"

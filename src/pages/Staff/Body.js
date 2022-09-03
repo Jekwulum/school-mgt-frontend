@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { staffTableConfig } from '../../utils/helpers/dataTableConfig';
 import { BasicTable } from '../../components/dataTable/Tables';
 import ManagementService from '../../utils/services/management.services';
+import StaffInfoModal from '../../components/modals/StaffInfoModal';
 
 
 const Body = ({ staffData }) => {
@@ -54,6 +55,8 @@ const Body = ({ staffData }) => {
   const tableObject = [...staffTableConfig, actionColumn];
   const disableAddButton = !firstName || !lastName || !email || !password || !confirmPassword || !gender || !photo || !phone;
   const addStaff = () => setAddNewStaff(!addNewStaff);
+  const changeInfoRenderStatus = () => setInfoRender(false);
+  const staffInfoModal = infoRender ? <StaffInfoModal onchange={changeInfoRenderStatus} data={staffInfo} themeMode={themeMode} /> : null;
 
   const viewStaffInfo = info => {
     setStaffInfo(info);
@@ -97,6 +100,7 @@ const Body = ({ staffData }) => {
   return (
     <div style={{ height: "100%", backgroundColor: themeMode.bodyColor, color: themeMode.textColor }}>
       <div style={{ padding: "10px 3%", height: "calc(100% - 0px)", overflowY: "scroll", backgroundColor: themeMode.bodyColor }}>
+        {staffInfoModal}
         <div className='d-flex justify-content-between'>
           <h1 className='mb-5 mt-2'>Staff</h1>
           <button onClick={addStaff} type='button' className='mt-4 h-75 p-2 border-0 rounded' style={{ backgroundColor: themeMode.bgColor, color: "#fff" }}>

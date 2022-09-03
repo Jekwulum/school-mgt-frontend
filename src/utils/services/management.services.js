@@ -38,13 +38,13 @@ const ManagementService = {
   },
 
   async updateStaff (staff_id, payload) {
-    const url = `api/student/${staff_id}`;
+    const url = `api/staff/${staff_id}`;
     const response = await Axios.put(url, payload);
     return response;
   },
 
   async deleteStaff (staff_id) {
-    const url = `api/student/${staff_id}`;
+    const url = `api/staff/${staff_id}`;
     const response = await Axios.delete(url);
     return response;
   },
