@@ -50,14 +50,14 @@ const StudentInfoModal = ({ onchange, data, themeMode }) => {
   };
 
   return (
-    <div style={{backgroundColor: themeMode.bodyColor}}>
+    <div style={{ backgroundColor: themeMode.bodyColor }}>
       <Modal show={show} backdrop="static" size="lg" keyboard={false} scrollable={true} dialogClassName="modal-90w">
         <div className="modal-header">
           <h4 className='modal-title'>Edit Info</h4>
           <i
             className="zmdi zmdi-close"
             onClick={handleClose}
-            style={{ fontSize: "22px", color: "#FC0303" }}>
+            style={{ fontSize: "30px", color: "#FC0303" }}>
           </i>
         </div>
         <Modal.Body>

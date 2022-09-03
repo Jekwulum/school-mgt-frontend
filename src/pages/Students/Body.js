@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 
 import { studentsTableConfig } from '../../utils/helpers/dataTableConfig';
 import { BasicTable } from '../../components/dataTable/Tables';
+import DeleteModal from '../../components/modals/DeleteProfileModal';
 import ManagementService from '../../utils/services/management.services';
 import StudentInfoModal from '../../components/modals/StudentInfoModal';
 
@@ -14,6 +15,7 @@ const Body = ({ studentsData }) => {
   const themeMode = darkMode ? darkTheme : lightTheme;
 
   const [addNewStudent, setAddNewStudent] = useState(false);
+  const [deleteRender, setDeleteRender] = useState(false);
   const [infoRender, setInfoRender] = useState(false);
   const [loading, setLoading] = useState(false);
   const [studentData, setStudentData] = useState({});
@@ -45,7 +47,11 @@ const Body = ({ studentsData }) => {
           </i>
         </span>
         <span className="text-center pointer m-auto">
-          <i className="zmdi zmdi-delete" style={{ fontSize: "22px", color: "#FC0303" }}></i>
+          <i
+            className="zmdi zmdi-delete"
+            style={{ fontSize: "22px", color: "#FC0303" }}
+            onClick={() => deleteStudentInfo(row.original)}>
+          </i>
         </span>
       </div>
     )
@@ -55,11 +61,18 @@ const Body = ({ studentsData }) => {
   const disableAddButton = !firstName || !lastName || !email || !password || !confirmPassword || !gender || !dob || !photo;
   const addStudent = () => setAddNewStudent(!addNewStudent);
   const changeInfoRenderStatus = () => setInfoRender(false);
+  const changeDeleteRenderStatus = () => setDeleteRender(false);
   const studentInfoModal = infoRender ? <StudentInfoModal onchange={changeInfoRenderStatus} data={studentData} themeMode={themeMode} /> : null;
+  const deleteInfoModal = deleteRender ? <DeleteModal onchange={changeDeleteRenderStatus} id={studentData.student_id} /> : null;
 
   const viewStudentInfo = info => {
     setStudentData(info);
     setInfoRender(true);
+  };
+
+  const deleteStudentInfo = info => {
+    setStudentData(info);
+    setDeleteRender(true);
   };
 
   const handlePhoto = (e) => {
@@ -99,6 +112,7 @@ const Body = ({ studentsData }) => {
       <div style={{ padding: "10px 3%", height: "calc(100% - 0px)", overflowY: "scroll", backgroundColor: themeMode.bodyColor }}>
         {/* <div style={{ display: "grid", gridTemplateColumns: "repeat(1, minmax(200px, 700px))" }}> */}
         {studentInfoModal}
+        {deleteInfoModal}
         <div className='d-flex justify-content-between'>
           <h1 className='mb-5 mt-2'>Students</h1>
           <button onClick={addStudent} type='button' className='mt-4 h-75 p-2 border-0 rounded' style={{ backgroundColor: themeMode.bgColor, color: "#fff" }}>
