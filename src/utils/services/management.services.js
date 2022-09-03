@@ -13,6 +13,12 @@ const ManagementService = {
     return response;
   },
 
+  async updateStudent (student_id, payload) {
+    const url = `api/student/${student_id}`;
+    const response = await Axios.put(url, payload);
+    return response;
+  },
+
   async getAllStaff () {
     const url = `/api/staff/`;
     const response = await Axios.get(url);

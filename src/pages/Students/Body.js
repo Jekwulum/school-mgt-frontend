@@ -35,10 +35,14 @@ const Body = ({ studentsData }) => {
 
   const actionColumn = {
     Header: 'Action', accessor: 'action',
-    Cell: row => (
+    Cell: ({ row }) => (
       <div className='d-flex'>
         <span className="text-center pointer m-auto">
-          <i style={{ fontSize: "22px" }} className="zmdi zmdi-edit"></i>
+          <i
+            onClick={() => viewStudentInfo(row.original)}
+            style={{ fontSize: "22px" }}
+            className="zmdi zmdi-edit">
+          </i>
         </span>
         <span className="text-center pointer m-auto">
           <i className="zmdi zmdi-delete" style={{ fontSize: "22px", color: "#FC0303" }}></i>
@@ -51,7 +55,12 @@ const Body = ({ studentsData }) => {
   const disableAddButton = !firstName || !lastName || !email || !password || !confirmPassword || !gender || !dob || !photo;
   const addStudent = () => setAddNewStudent(!addNewStudent);
   const changeInfoRenderStatus = () => setInfoRender(false);
-  const studentInfoModal = infoRender ? <StudentInfoModal onchange={changeInfoRenderStatus} data={studentData} /> : null;
+  const studentInfoModal = infoRender ? <StudentInfoModal onchange={changeInfoRenderStatus} data={studentData} themeMode={themeMode} /> : null;
+
+  const viewStudentInfo = info => {
+    setStudentData(info);
+    setInfoRender(true);
+  };
 
   const handlePhoto = (e) => {
     e.preventDefault();
