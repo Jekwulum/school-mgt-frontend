@@ -11,6 +11,30 @@ const ManagementService = {
     const url = `api/student`;
     const response = await Axios.post(url, payload);
     return response;
+  },
+
+  async updateStudent (student_id, payload) {
+    const url = `api/student/${student_id}`;
+    const response = await Axios.put(url, payload);
+    return response;
+  },
+
+  async deleteStudent (student_id) {
+    const url = `api/student/${student_id}`;
+    const response = await Axios.delete(url);
+    return response;
+  },
+
+  async getAllStaff () {
+    const url = `/api/staff/`;
+    const response = await Axios.get(url);
+    return response;
+  },
+
+  async addStaff (payload) {
+    const url = `api/staff`;
+    const response = await Axios.post(url, payload);
+    return response;
   }
 };
 

@@ -7,7 +7,7 @@ const initialState = {
   students: [],
   loadingStudents: "",
   error: null
-}
+};
 
 export const fetchStudents = createAsyncThunk('students/fetchStudents', async () => {
   const { data: responseData } = await ManagementService.getStudents();
