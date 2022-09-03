@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import ManagementService from '../../utils/services/management.services';
 import Modal from 'react-bootstrap/Modal';
-import moment from 'moment';
 import Select from 'react-select';
 import toast from 'react-hot-toast';
 
-
-const StudentInfoModal = ({ onchange, data, themeMode }) => {
+const StaffInfoModal = ({ onchange, data, themeMode }) => {
   const [show, setShow] = useState(true);
   const [loading, setLoading] = useState(false);
 
   const [firstName, setFirstName] = useState(data.first);
   const [lastName, setLastName] = useState(data.last);
   const [otherName, setOtherName] = useState(data.other);
-  // const [email, setEmail] = useState(data.email);
   const [phone, setPhone] = useState(data.phone);
   const [gender, setGender] = useState(data.gender);
-  const [dob, setDob] = useState(data.dob);
-  // const [photo, setPhoto] = useState(data.photo);
+  const [adminStatus, setAdminStatus] = useState(data.is_admin);
   const GENDERS = [
     { value: 'male', label: 'male' },
     { value: 'female', label: 'female' }
+  ];
+  const ADMIN_STATUS = [
+    { value: true, label: 'YES' },
+    { value: false, label: 'NO' }
   ];
 
   const handleClose = () => {
@@ -34,14 +34,14 @@ const StudentInfoModal = ({ onchange, data, themeMode }) => {
 
     const payload = {
       first: firstName, last: lastName, other: otherName,
-      gender, dob, phone,
+      gender, phone, is_admin: adminStatus
     };
+    console.log(payload);
 
-    const { data: responseData } = await ManagementService.updateStudent(data.student_id, payload);
+    const { data: responseData } = await ManagementService.updateStaff(data.staff_id, payload);
     if (responseData.status !== "SUCCESS") toast.error(responseData.message);
     else {
       toast.success(responseData.message);
-      // setShow(false);
       onchange();
     };
 
@@ -95,15 +95,12 @@ const StudentInfoModal = ({ onchange, data, themeMode }) => {
 
                 <div className="row mt-2">
                   <div className="col">
-                    <label className="form-label">Date of Birth<span className="tx-danger">*</span></label>
-                    <input type="date"
-                      value={moment(dob).format('YYYY-MM-DD')}
-                      onChange={e => {
-                        const newDate = moment(new Date(e.target.value)).format('YYYY-MM-DD');
-                        setDob(newDate);
-                      }}
-                      className='w-75 border-0 rounded h-50'
-                    />
+                    <label className="form-label">Admin Status </label>
+                    <Select options={ADMIN_STATUS}
+                      isClearable={false} isSearchable={true}
+                      maxMenuHeight={250} menuPlacement="bottom"
+                      value={adminStatus}
+                      name={gender} onChange={option => setAdminStatus(option.value)} />
                   </div>
                   <div className="col">
                     <label className="form-label">Phone</label>
@@ -130,4 +127,4 @@ const StudentInfoModal = ({ onchange, data, themeMode }) => {
   )
 };
 
-export default StudentInfoModal
+export default StaffInfoModal;

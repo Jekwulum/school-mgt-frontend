@@ -28,7 +28,7 @@ const Routes = () => {
 
         <Route exact path={["/dashboard", "/home", "/"]} render={() => <Dashboard />} />
         <IsLoggedInRoute exact path="/students" component={Students} />
-        <Route path="/staff" component={Staff} />
+        <IsLoggedInRoute exact path="/staff" component={Staff} />
         <Route path="/tables" component={Tables} />
         <Route path="/hero404" component={Hero404} />
         <Route path="/profile" component={Profile} />

@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { configs } from '../helpers/constants';
+import cookieHelper from '../helpers/cookieHelper';
 import TokenHelpers from '../helpers/tokenHelper';
 
 const BASE_URL = "http://localhost:4000";
@@ -14,7 +16,14 @@ instance.interceptors.request.use((request) => {
   return request;
 }, error => Promise.reject(error));
 
-instance.interceptors.response.use((response) => {
-  return response;
-}, error => Promise.reject(error));
+// instance.interceptors.response.use((response) => {
+//   return response;
+// }, error => Promise.reject(error));
+
+instance.interceptors.response.use(response => response, error => {
+  if (error.response.status === 401) {
+    cookieHelper.remove(configs.KEY);
+    window.location.href = '/login';
+  } else return error.response;
+});
 
