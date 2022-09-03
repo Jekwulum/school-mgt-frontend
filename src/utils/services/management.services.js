@@ -19,6 +19,12 @@ const ManagementService = {
     return response;
   },
 
+  async deleteStudent (student_id) {
+    const url = `api/student/${student_id}`;
+    const response = await Axios.delete(url);
+    return response;
+  },
+
   async getAllStaff () {
     const url = `/api/staff/`;
     const response = await Axios.get(url);
