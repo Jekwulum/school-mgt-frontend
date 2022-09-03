@@ -36,7 +36,6 @@ const StudentInfoModal = ({ onchange, data, themeMode }) => {
       first: firstName, last: lastName, other: otherName,
       gender, dob, phone,
     };
-    console.log(payload);
 
     const { data: responseData } = await ManagementService.updateStudent(data.student_id, payload);
     if (responseData.status !== "SUCCESS") toast.error(responseData.message);
