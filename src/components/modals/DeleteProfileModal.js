@@ -20,7 +20,15 @@ const DeleteModal = ({ onchange, id, themeMode }) => {
 
   const deleteProfile = async () => {
     setLoading(true);
-    const { data: responseData } = await ManagementService.deleteStudent(id);
+    let deleteService;
+    if (id.slice(0, 3).toLowerCase() === "stu") {
+      deleteService = ManagementService.deleteStudent
+    }
+    else {
+      deleteService = ManagementService.deleteStaff
+    }
+    const { data: responseData } = await deleteService(id);
+    console.log("dfrew", deleteService);
     if (responseData.status !== "SUCCESS") toast.error(responseData.message);
     else {
       toast.success(responseData.message);

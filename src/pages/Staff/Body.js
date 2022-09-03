@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 
 import { staffTableConfig } from '../../utils/helpers/dataTableConfig';
 import { BasicTable } from '../../components/dataTable/Tables';
+import DeleteModal from '../../components/modals/DeleteProfileModal';
 import ManagementService from '../../utils/services/management.services';
 import StaffInfoModal from '../../components/modals/StaffInfoModal';
 
@@ -14,6 +15,7 @@ const Body = ({ staffData }) => {
   const themeMode = darkMode ? darkTheme : lightTheme;
 
   const [addNewStaff, setAddNewStaff] = useState(false);
+  const [deleteRender, setDeleteRender] = useState(false);
   const [infoRender, setInfoRender] = useState(false);
   const [staffInfo, setStaffInfo] = useState({});
 
@@ -48,6 +50,13 @@ const Body = ({ staffData }) => {
             onClick={() => viewStaffInfo(row.original)}>
           </i>
         </span>
+        <span className="text-center pointer m-auto">
+          <i
+            className="zmdi zmdi-delete"
+            style={{ fontSize: "22px", color: "#FC0303" }}
+            onClick={() => deleteStaffInfo(row.original)}>
+          </i>
+        </span>
       </div>
     )
   };
@@ -56,11 +65,18 @@ const Body = ({ staffData }) => {
   const disableAddButton = !firstName || !lastName || !email || !password || !confirmPassword || !gender || !photo || !phone;
   const addStaff = () => setAddNewStaff(!addNewStaff);
   const changeInfoRenderStatus = () => setInfoRender(false);
+  const changeDeleteRenderStatus = () => setDeleteRender(false);
+  const deleteInfoModal = deleteRender ? <DeleteModal onchange={changeDeleteRenderStatus} id={staffInfo.staff_id} /> : null;
   const staffInfoModal = infoRender ? <StaffInfoModal onchange={changeInfoRenderStatus} data={staffInfo} themeMode={themeMode} /> : null;
 
   const viewStaffInfo = info => {
     setStaffInfo(info);
     setInfoRender(true);
+  };
+
+  const deleteStaffInfo = info => {
+    setStaffInfo(info);
+    setDeleteRender(true);
   };
 
   const handlePhoto = (e) => {
@@ -101,6 +117,7 @@ const Body = ({ staffData }) => {
     <div style={{ height: "100%", backgroundColor: themeMode.bodyColor, color: themeMode.textColor }}>
       <div style={{ padding: "10px 3%", height: "calc(100% - 0px)", overflowY: "scroll", backgroundColor: themeMode.bodyColor }}>
         {staffInfoModal}
+        {deleteInfoModal}
         <div className='d-flex justify-content-between'>
           <h1 className='mb-5 mt-2'>Staff</h1>
           <button onClick={addStaff} type='button' className='mt-4 h-75 p-2 border-0 rounded' style={{ backgroundColor: themeMode.bgColor, color: "#fff" }}>
