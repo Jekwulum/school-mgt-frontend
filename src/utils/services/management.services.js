@@ -35,7 +35,19 @@ const ManagementService = {
     const url = `api/staff`;
     const response = await Axios.post(url, payload);
     return response;
-  }
+  },
+
+  async updateStaff (staff_id, payload) {
+    const url = `api/student/${staff_id}`;
+    const response = await Axios.put(url, payload);
+    return response;
+  },
+
+  async deleteStaff (staff_id) {
+    const url = `api/student/${staff_id}`;
+    const response = await Axios.delete(url);
+    return response;
+  },
 };
 
 export default ManagementService;

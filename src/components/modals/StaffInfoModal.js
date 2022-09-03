@@ -19,6 +19,30 @@ const StaffInfoModal = ({ onchange, data, themeMode }) => {
     { value: 'male', label: 'male' },
     { value: 'female', label: 'female' }
   ];
+
+  const handleClose = () => {
+    setShow(false);
+    onchange();
+  };
+
+  const upload = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+  };
+  const payload = {
+    first: firstName, last: lastName, other: otherName,
+    gender, dob, phone,
+  };
+  console.log(payload);
+
+  const { data: responseData } = await ManagementService.updateStudent(data.student_id, payload);
+  if (responseData.status !== "SUCCESS") toast.error(responseData.message);
+  else {
+    toast.success(responseData.message);
+    // setShow(false);
+    onchange();
+  };
+
   return (
     <div>StaffInfoModal</div>
   )
