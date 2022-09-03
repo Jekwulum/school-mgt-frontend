@@ -50,7 +50,7 @@ const StudentInfoModal = ({ onchange, data, themeMode }) => {
   };
 
   return (
-    <div>
+    <div style={{backgroundColor: themeMode.bodyColor}}>
       <Modal show={show} backdrop="static" size="lg" keyboard={false} scrollable={true} dialogClassName="modal-90w">
         <div className="modal-header">
           <h4 className='modal-title'>Edit Info</h4>
