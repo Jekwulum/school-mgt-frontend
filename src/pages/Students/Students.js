@@ -29,7 +29,7 @@ const Students = () => {
         <Navbar />
         {
           loadState ? <SphereLoader2 /> :
-          <Body studentsData={students} />
+            <Body studentsData={students} />
         }
       </div>
     </div>
