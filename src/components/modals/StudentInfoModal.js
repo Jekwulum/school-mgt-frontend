@@ -78,7 +78,7 @@ const StudentInfoModal = ({ onchange, data, themeMode }) => {
                   </div>
                 </div>
 
-                <div className="row">
+                <div className="row mt-2">
                   <div className="col">
                     <label className="form-label">Last Name </label>
                     <input type="text" className='form-control'
@@ -94,7 +94,7 @@ const StudentInfoModal = ({ onchange, data, themeMode }) => {
                   </div>
                 </div>
 
-                <div className="row">
+                <div className="row mt-2">
                   <div className="col">
                     <label className="form-label">Date of Birth<span className="tx-danger">*</span></label>
                     <input type="date"
