@@ -18,6 +18,10 @@ const StaffInfoModal = ({ onchange, data, themeMode }) => {
     { value: 'male', label: 'male' },
     { value: 'female', label: 'female' }
   ];
+  const ADMIN_STATUS = [
+    { value: true, label: 'YES' },
+    { value: false, label: 'NO' }
+  ];
 
   const handleClose = () => {
     setShow(false);
