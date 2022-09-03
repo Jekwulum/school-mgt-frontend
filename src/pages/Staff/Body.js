@@ -13,6 +13,9 @@ const Body = ({ staffData }) => {
   const themeMode = darkMode ? darkTheme : lightTheme;
 
   const [addNewStaff, setAddNewStaff] = useState(false);
+  const [infoRender, setInfoRender] = useState(false);
+  const [staffInfo, setStaffInfo] = useState({});
+
   const [loading, setLoading] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -33,8 +36,29 @@ const Body = ({ staffData }) => {
     { value: false, label: 'NO' }
   ];
 
+  const actionColumn = {
+    Header: 'Action', accessor: 'action',
+    Cell: ({ row }) => (
+      <div className="d-flex">
+        <span className="text-center pointer m-auto">
+          <i
+            className="zmdi zmdi-edit"
+            style={{ fontSize: "22px" }}
+            onClick={() => viewStaffInfo(row.original)}>
+          </i>
+        </span>
+      </div>
+    )
+  };
+
+  const tableObject = [...staffTableConfig, actionColumn];
   const disableAddButton = !firstName || !lastName || !email || !password || !confirmPassword || !gender || !photo || !phone;
   const addStaff = () => setAddNewStaff(!addNewStaff);
+
+  const viewStaffInfo = info => {
+    setStaffInfo(info);
+    setInfoRender(true);
+  };
 
   const handlePhoto = (e) => {
     e.preventDefault();
@@ -49,7 +73,7 @@ const Body = ({ staffData }) => {
   const upload = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+
     if (password !== confirmPassword) {
       toast.error("passwords do not match");
       setLoading(false);
@@ -177,7 +201,7 @@ const Body = ({ staffData }) => {
             </form>
           </div> : ""}
         </div>
-        <BasicTable columnsHeaders={staffTableConfig} data={staffData} />
+        <BasicTable columnsHeaders={tableObject} data={staffData} />
       </div>
     </div>
   )
