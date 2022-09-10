@@ -1,4 +1,4 @@
-* {
+.body {
   padding: 0;
   margin: auto;
   box-sizing: border-box;
@@ -17,8 +17,8 @@
 
 .login img {
   display: block;
-  min-width: 100%;
-  min-height: 100%;
+  /* min-width: 100%;
+  min-height: 100%; */
   width: auto;
   height: auto;
   border-top-left-radius: 30px;

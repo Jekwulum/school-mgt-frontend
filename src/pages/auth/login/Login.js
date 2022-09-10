@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import './Login.css';
 import 'animate.css';
 
@@ -38,6 +39,7 @@ const Login = () => {
         if (responseData.status !== Loading.SUCCESS) {
           setLoginErrorStatus(true);
           setMessage(responseData.message);
+          toast.error(responseData.message);
           setLoadingStatus(false);
         } else {
           validateLogin(responseData).catch(err => console.trace(err));
@@ -47,6 +49,7 @@ const Login = () => {
         if (err.response) {
           setLoginErrorStatus(true);
           setMessage(err.response.data.message);
+          toast.error(err.response.data.message);
           setLoadingStatus(false);
         }
       });
@@ -70,7 +73,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className='body'>
       <section className="login py-5 bg-light">
         <div className="container">
           <div className="row g-0">
@@ -80,7 +83,7 @@ const Login = () => {
             <div className="col-lg-7 text-center py-5">
               <h1 className='animate__animated animate__pulse animate__infinite	infinite'><i>mySchool</i></h1>
 
-              <form>
+              {/* <form> */}
                 <div className="form-row py-3 pt-5">
                   <div className="offset-1 col-lg-10">
                     <input
@@ -94,7 +97,7 @@ const Login = () => {
                   <div className="offset-1 col-lg-10 passwrd-inp">
                     <input
                       value={password} onChange={e => setPassword(e.target.value)}
-                      className='inp px-3' type="password"
+                      className='inp px-3' type={passwordType}
                       placeholder='Enter password' />
                     <div className="eye-right">
                       {passwordType === "password" ?
@@ -107,12 +110,12 @@ const Login = () => {
 
                 <div className="form-row py-3">
                   <div className="offset-1 col-lg-10">
-                    <button className='btn1' disabled={ifValidated}>
+                    <button className='btn1' disabled={ifValidated} onClick={handleLogin}>
                       Sign In {loading ? <>&nbsp;<i className="fa fa-spin fa-spinner" /> </> : ""}
                     </button>
                   </div>
                 </div>
-              </form>
+              {/* </form> */}
               <p className='forgot-password'>forgot password?</p>
             </div>
           </div>
