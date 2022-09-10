@@ -20,6 +20,7 @@ const Login = () => {
   const [loading, setLoadingStatus] = useState(false);
   const [message, setMessage] = useState("");
   const [errorStatus, setLoginErrorStatus] = useState(false);
+  const ifValidated = !userId || !password;
 
   if (isLoggedIn) return <Redirect to={{ pathname: '/' }} />;
 
@@ -82,19 +83,33 @@ const Login = () => {
               <form>
                 <div className="form-row py-3 pt-5">
                   <div className="offset-1 col-lg-10">
-                    <input className='inp px-3' type="text" placeholder='Enter ID' />
+                    <input
+                      value={userId} onChange={e => setUserId(e.target.value)}
+                      className='inp px-3' type="text"
+                      placeholder='Enter ID' />
+                  </div>
+                </div>
+
+                <div className="form-row py-3">
+                  <div className="offset-1 col-lg-10 passwrd-inp">
+                    <input
+                      value={password} onChange={e => setPassword(e.target.value)}
+                      className='inp px-3' type="password"
+                      placeholder='Enter password' />
+                    <div className="eye-right">
+                      {passwordType === "password" ?
+                        <i onClick={() => togglePasswordField('text')} className="zmdi zmdi-eye"></i> :
+                        <i onClick={() => togglePasswordField('password')} className="zmdi zmdi-eye-off"></i>
+                      }
+                    </div>
                   </div>
                 </div>
 
                 <div className="form-row py-3">
                   <div className="offset-1 col-lg-10">
-                    <input className='inp px-3' type="password" placeholder='Enter password' />
-                  </div>
-                </div>
-
-                <div className="form-row py-3">
-                  <div className="offset-1 col-lg-10">
-                    <button className='btn1'>Sign In</button>
+                    <button className='btn1' disabled={ifValidated}>
+                      Sign In {loading ? <>&nbsp;<i className="fa fa-spin fa-spinner" /> </> : ""}
+                    </button>
                   </div>
                 </div>
               </form>
