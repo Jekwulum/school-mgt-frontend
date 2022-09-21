@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Body = () => {
+const Body = ({ student }) => {
   return (
     <div>Body</div>
   )

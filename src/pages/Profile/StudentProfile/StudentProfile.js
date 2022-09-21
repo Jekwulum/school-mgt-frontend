@@ -32,8 +32,7 @@ const StudentProfile = ({ id }) => {
         <Navbar />
         {
           loadState ? <SphereLoader2 /> :
-            // <Body studentData={student} />
-            <div> HEllo </div>
+            <Body studentData={student} />
         }
       </div>
     </div>
