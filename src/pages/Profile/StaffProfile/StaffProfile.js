@@ -1,25 +1,25 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { batch, useSelector, useDispatch } from 'react-redux';
 
 import Body from './Body';
 import Navbar from '../../../Navbar';
 import Sidebar from '../../../Sidebar';
-import { fetchStudent } from '../../../store/slice/studentProfileSlice';
+import { fetchStaff } from '../../../store/slice/staffProfileSlice';
 import { Loading } from '../../../utils/helpers/constants';
 import { SphereLoader2 } from '../../../components/loaders/SphereLoaders';
 
-const StudentProfile = ({ id }) => {
+const StaffProfile = ({ id }) => {
   const dispatch = useDispatch();
-  const { student, loadingStudent } = useSelector(state => state.student);
-  const loadState = loadingStudent !== Loading.SUCCESS;
+  const { staff, loadingStaff } = useSelector(state => state.staffProfile);
+  const loadState = loadingStaff !== Loading.SUCCESS;
 
   useEffect(() => {
     batch(() => {
-      if (loadingStudent !== Loading.SUCCESS) dispatch(fetchStudent(id));
+      if (loadingStaff !== Loading.SUCCESS) dispatch(fetchStaff(id));
     })
-  }, [dispatch, loadingStudent]);
+  }, [dispatch, loadingStaff]);
 
-  console.log("student: ", student);
+  console.log("staff: ", staff);
 
   return (
     <div className='d-flex'>
@@ -31,11 +31,11 @@ const StudentProfile = ({ id }) => {
         <Navbar />
         {
           loadState ? <SphereLoader2 /> :
-            <Body studentData={student} />
+            <Body staffData={staff} />
         }
       </div>
     </div>
   )
 }
 
-export default StudentProfile;
+export default StaffProfile;
