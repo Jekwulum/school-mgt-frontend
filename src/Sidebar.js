@@ -30,16 +30,16 @@ const Sidebar = () => {
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <NavLink exact to="/" activeClassName="activeClicked">
+            {/* <NavLink exact to="/" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="columns">
                 dashboard
               </CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink exact to="/tables" activeClassName="activeClicked">
+            </NavLink> */}
+            {/* <NavLink exact to="/tables" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">
                 tables
               </CDBSidebarMenuItem>
-            </NavLink>
+            </NavLink> */}
             <NavLink exact to="/students" activeClassName="activeClicked">
               <CDBSidebarMenuItem>
                 <i className="zmdi zmdi-graduation-cap" style={{ fontSize: iconFontSize }}></i>
@@ -63,11 +63,11 @@ const Sidebar = () => {
                 <span style={{ marginLeft: iconMarginLeft }}>Profile</span>
               </CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
+            {/* <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="exclamation-circle">
                 404 page
               </CDBSidebarMenuItem>
-            </NavLink>
+            </NavLink> */}
           </CDBSidebarMenu>
           <CDBSidebarMenu>
           </CDBSidebarMenu>
