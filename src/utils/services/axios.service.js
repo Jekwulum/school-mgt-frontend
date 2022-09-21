@@ -3,7 +3,8 @@ import { configs } from '../helpers/constants';
 import cookieHelper from '../helpers/cookieHelper';
 import TokenHelpers from '../helpers/tokenHelper';
 
-const BASE_URL = "http://localhost:4000";
+// const BASE_URL = "http://localhost:4000";
+const BASE_URL = "https://j-myschool-api.herokuapp.com/"
 // const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYWRtaW4wMDEiLCJvYmpfaWQiOiI2MmEyNWJmMjYwMGQ0NWE2ZTRhNjAzMTIiLCJpYXQiOjE2NjA0MTgzNTIsImV4cCI6MTY2MDQyNTU1Mn0.Zwui_6xr6pWoTGJRX9TkfHb0SugmfVo5vuy2vgoPd0I";
 
 export const instance = axios.create({

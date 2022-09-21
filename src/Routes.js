@@ -32,7 +32,7 @@ const Routes = () => {
         <IsLoggedInRoute exact path="/staff" component={Staff} />
         <Route path="/tables" component={Tables} />
         <Route path="/hero404" component={Hero404} />
-        <Route path={["/profile", "/home", "/"]}component={Profile} />
+        <IsLoggedInRoute exact path={["/profile", "/home", "/"]}component={Profile} />
 
         {/* <Route component={Error404} /> */}
       </BrowserRouter>
