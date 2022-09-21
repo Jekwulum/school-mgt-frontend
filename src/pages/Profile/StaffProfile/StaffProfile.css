@@ -1,0 +1,55 @@
+.staffProfile .staff-body {
+  margin-top: 30px;
+}
+
+.staffProfile .profile-info {
+  display: flex;
+  gap: 30px;
+
+}
+
+.staffProfile .img-container {
+  position: relative;
+  width: 50%;
+}
+
+.staffProfile .img-container img {
+  height: 200px;
+  width: 200px;
+
+  /* border-radius: 300px; */
+}
+
+.staffProfile .img-container .changePhoto-btn {
+  position: absolute;
+  width: 150px;
+  top: 71%;
+  left: 50px;
+  height: 38px;
+}
+
+.staffProfile .img-container .photo-label{
+  position: absolute;
+  font-size: 28px; 
+  height: 38px; 
+  width: 50px;
+  top: 83%;
+  padding-left: 15px;
+}
+
+.staff-details {
+  height: 300px;
+  min-width: 60%;
+  border-radius: 30px;
+  box-shadow: 3px 3px 5px #2C3891;
+}
+
+@media only screen and (max-width: 750px) {
+  .staffProfile .profile-info {
+    display: block;
+  }
+
+  .staffProfile .main {
+    display: block;
+  }
+}

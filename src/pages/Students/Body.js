@@ -120,100 +120,101 @@ const Body = ({ studentsData }) => {
           </button>
         </div>
         <div className="">
-          {addNewStudent ? <div className='table-responsive mb-4'>
-            <form className="mb-4">
-              <div className='container'>
-                <div className="row">
-                  <div className="col">
-                    <label className="form-label">First Name <span className="tx-danger">*</span></label>
-                    <input type="text" className="form-control" value={firstName}
-                      placeholder="Enter first name"
-                      onChange={event => setFirstName(event.target.value)}
-                    />
+          {addNewStudent ?
+            <div className='table-responsive mb-4'>
+              <form className="mb-4">
+                <div className='container'>
+                  <div className="row">
+                    <div className="col">
+                      <label className="form-label">First Name <span className="tx-danger">*</span></label>
+                      <input type="text" className="form-control" value={firstName}
+                        placeholder="Enter first name"
+                        onChange={event => setFirstName(event.target.value)}
+                      />
+                    </div>
+                    <div className="col">
+                      <label className="form-label">Other Name </label>
+                      <input type="text" className="form-control" value={otherName}
+                        placeholder="Enter other name"
+                        onChange={event => setOtherName(event.target.value)}
+                      />
+                    </div>
+                    <div className="col">
+                      <label className="form-label">Last Name <span className="tx-danger">*</span></label>
+                      <input type="text" className="form-control" value={lastName}
+                        placeholder="Enter last name"
+                        onChange={event => setLastName(event.target.value)}
+                      />
+                    </div>
                   </div>
-                  <div className="col">
-                    <label className="form-label">Other Name </label>
-                    <input type="text" className="form-control" value={otherName}
-                      placeholder="Enter other name"
-                      onChange={event => setOtherName(event.target.value)}
-                    />
+
+
+                  <div className="row mt-4">
+                    <div className="col">
+                      <label className="form-label">Email<span className="tx-danger">*</span></label>
+                      <input type="email" className="form-control" value={email}
+                        placeholder="Enter email"
+                        onChange={event => setEmail(event.target.value)}
+                      />
+                    </div>
+                    <div className="col">
+                      <label className="form-label">Password <span className="tx-danger">*</span></label>
+                      <input type="password" className="form-control" value={password}
+                        placeholder="Enter password"
+                        onChange={event => setPassword(event.target.value)}
+                      />
+                    </div>
+                    <div className="col">
+                      <label className="form-label">Confirm Password <span className="tx-danger">*</span></label>
+                      <input type="password" className="form-control" value={confirmPassword}
+                        placeholder="Enter password again"
+                        onChange={event => setConfirmPassword(event.target.value)}
+                      />
+                    </div>
                   </div>
-                  <div className="col">
-                    <label className="form-label">Last Name <span className="tx-danger">*</span></label>
-                    <input type="text" className="form-control" value={lastName}
-                      placeholder="Enter last name"
-                      onChange={event => setLastName(event.target.value)}
-                    />
+
+                  <div className="row mt-4">
+                    <div className="col">
+                      <label className="form-label">Gender<span className="tx-danger">*</span></label>
+                      <Select options={GENDERS}
+                        isClearable={false} isSearchable={true}
+                        maxMenuHeight={250} menuPlacement="bottom"
+                        name={gender} onChange={option => setGender(option.value)} />
+                    </div>
+                    <div className="col">
+                      <label className="form-label">Date of Birth<span className="tx-danger">*</span></label>
+                      <input type="date"
+                        onChange={e => {
+                          const newDate = moment(new Date(e.target.value)).format('YYYY-MM-DD');
+                          setDob(newDate);
+                        }}
+                        className='w-75 border-0 rounded h-50'
+                      />
+                    </div>
+                    <div className="col">
+                      <label className="form-label">Photo<span className="tx-danger">*</span></label>
+                      <input type="file" className="form-control"
+                        onChange={handlePhoto} accept="image/*"
+                      />
+                    </div>
+                    <div className="col">
+                      <label className="form-label">Phone</label>
+                      <input type="text" className="form-control" value={phone}
+                        onChange={event => setPhone(event.target.value)}
+                        placeholder="Enter phone number"
+                      />
+                    </div>
                   </div>
+
+                  <button onClick={upload}
+                    className='mt-4 p-2 border-0 rounded' disabled={disableAddButton}
+                    style={{ backgroundColor: disableAddButton ? themeMode.bgColor + "b3" : themeMode.bgColor, color: "#fff", height: "40px" }}>
+                    Create Profile {loading ? <>&nbsp;<i
+                      className="fa fa-spin fa-spinner" /></> : ""}
+                  </button>
                 </div>
-
-
-                <div className="row mt-4">
-                  <div className="col">
-                    <label className="form-label">Email<span className="tx-danger">*</span></label>
-                    <input type="email" className="form-control" value={email}
-                      placeholder="Enter email"
-                      onChange={event => setEmail(event.target.value)}
-                    />
-                  </div>
-                  <div className="col">
-                    <label className="form-label">Password <span className="tx-danger">*</span></label>
-                    <input type="password" className="form-control" value={password}
-                      placeholder="Enter password"
-                      onChange={event => setPassword(event.target.value)}
-                    />
-                  </div>
-                  <div className="col">
-                    <label className="form-label">Confirm Password <span className="tx-danger">*</span></label>
-                    <input type="password" className="form-control" value={confirmPassword}
-                      placeholder="Enter password again"
-                      onChange={event => setConfirmPassword(event.target.value)}
-                    />
-                  </div>
-                </div>
-
-                <div className="row mt-4">
-                  <div className="col">
-                    <label className="form-label">Gender<span className="tx-danger">*</span></label>
-                    <Select options={GENDERS}
-                      isClearable={false} isSearchable={true}
-                      maxMenuHeight={250} menuPlacement="bottom"
-                      name={gender} onChange={option => setGender(option.value)} />
-                  </div>
-                  <div className="col">
-                    <label className="form-label">Date of Birth<span className="tx-danger">*</span></label>
-                    <input type="date"
-                      onChange={e => {
-                        const newDate = moment(new Date(e.target.value)).format('YYYY-MM-DD');
-                        setDob(newDate);
-                      }}
-                      className='w-75 border-0 rounded h-50'
-                    />
-                  </div>
-                  <div className="col">
-                    <label className="form-label">Photo<span className="tx-danger">*</span></label>
-                    <input type="file" className="form-control"
-                      onChange={handlePhoto} accept="image/*"
-                    />
-                  </div>
-                  <div className="col">
-                    <label className="form-label">Phone</label>
-                    <input type="text" className="form-control" value={phone}
-                      onChange={event => setPhone(event.target.value)}
-                      placeholder="Enter phone number"
-                    />
-                  </div>
-                </div>
-
-                <button onClick={upload}
-                  className='mt-4 p-2 border-0 rounded' disabled={disableAddButton}
-                  style={{ backgroundColor: disableAddButton ? themeMode.bgColor + "b3" : themeMode.bgColor, color: "#fff", height: "40px" }}>
-                  Create Profile {loading ? <>&nbsp;<i
-                    className="fa fa-spin fa-spinner" /></> : ""}
-                </button>
-              </div>
-            </form>
-          </div> : ""}
+              </form>
+            </div> : ""}
         </div>
         <BasicTable columnsHeaders={tableObject} data={studentsData} />
       </div>

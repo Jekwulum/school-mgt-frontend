@@ -1,0 +1,89 @@
+.login-body {
+  padding: 0;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.login-body .bg-light {
+  background-color: #FFF !important;
+}
+
+.login-body .row {
+  background: white;
+  border-radius: 30px;
+  box-shadow: 5px 5px 10px #2C3891;
+  top: 50%;
+}
+
+.login-body .login img {
+  display: block;
+  /* min-width: 100%;
+  min-height: 100%; */
+  width: auto;
+  height: auto;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.login-body .login h1 {
+  font-size: 4rem;
+  font-weight: 600;
+  font-family: 'Pacifico', cursive;
+  color: #2C3891;
+}
+
+.login-body .inp {
+  height: 50px;
+  width: 70%;
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  box-shadow: 2px 2px 25px -2px rgba(0, 0, 0, 0.46);
+  -webkit-box-shadow: 2px 2px 25px -2px rgba(0, 0, 0, 0.46);
+  -moz-box-shadow: 2px 2px 25px -2px rgba(0, 0, 0, 0.46);
+}
+
+.login-body .btn1 {
+  height: 50px;
+  width: 50%;
+  border: none;
+  outline: none;
+  border-radius: 60px;
+  font-weight: 600;
+  color: #FFF;
+  background-color: #2C3891;
+}
+
+.login-body .btn1:hover {
+  background-color: #3746bc;
+  transition: 0.5s;
+}
+
+.login-body .eye-right {
+  font-size: 25px;
+  color: #828996;
+  display: inline-block;
+  position: absolute;
+  z-index: 5;
+  right: 20%;
+  bottom: 6px;
+  cursor: pointer;
+}
+
+.login-body .forgot-password {
+  color: #2C3891;
+}
+
+@media only screen and (min-width: 981px) {
+  .login-body .row {
+    margin-top: 100px;
+  }
+
+  .login-body .login img {
+    margin-top: 90px;
+    margin-left: 40px;
+  }
+  .login-body .eye-right{
+    right: 20%;
+  }
+}
