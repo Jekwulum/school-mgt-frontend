@@ -7,6 +7,12 @@ const ManagementService = {
     return response;
   },
 
+  async getStudent (id) {
+    const url = `/api/student/${id}`;
+    const response = await Axios.get(url);
+    return response;
+  },
+
   async addStudent (payload) {
     const url = `api/student`;
     const response = await Axios.post(url, payload);
@@ -27,6 +33,12 @@ const ManagementService = {
 
   async getAllStaff () {
     const url = `/api/staff/`;
+    const response = await Axios.get(url);
+    return response;
+  },
+
+  async getStaff (id) {
+    const url = `/api/staff/${id}`;
     const response = await Axios.get(url);
     return response;
   },

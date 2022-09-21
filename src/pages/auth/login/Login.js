@@ -9,6 +9,7 @@ import EncryptHelper from '../../../utils/helpers/encryptHelper';
 import TokenHelper from '../../../utils/helpers/tokenHelper';
 import { Loading } from '../../../utils/helpers/constants';
 import AuthService from '../../../utils/services/auth.service';
+import Profile from '../../Profile/Profile';
 
 const Login = () => {
 
@@ -60,7 +61,7 @@ const Login = () => {
     if (tokenData) {
       await setLoggedInUser(responseData.access, tokenData);
       setLoadingStatus(false);
-      history.push('/');
+      history.push('/profile');
     } else {
       setLoginErrorStatus(false);
       setLoadingStatus(false);
@@ -73,7 +74,7 @@ const Login = () => {
   };
 
   return (
-    <div className='body'>
+    <div className='login-body'>
       <section className="login py-5 bg-light">
         <div className="container">
           <div className="row g-0">

@@ -6,7 +6,7 @@ import ManagementService from "../../utils/services/management.services";
 const initialState = {
   students: [],
   loadingStudents: "",
-  error: null
+  error: null,
 };
 
 export const fetchStudents = createAsyncThunk('students/fetchStudents', async () => {

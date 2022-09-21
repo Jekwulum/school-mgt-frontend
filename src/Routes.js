@@ -10,7 +10,8 @@ import Students from "./pages/Students/Students";
 import TokenHelpers from "./utils/helpers/tokenHelper";
 import { Tables } from "./pages/Tables";
 import { Hero404 } from "./pages/Hero404";
-import { Profile } from "./pages/Profile";
+// import { Profile } from "./pages/Profile";
+import Profile from "./pages/Profile/Profile";
 
 const Routes = () => {
 
