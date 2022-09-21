@@ -25,6 +25,12 @@ const ManagementService = {
     return response;
   },
 
+  async updatePhoto (student_id, payload) {
+    const url = `api/student/${student_id}`;
+    const response = await Axios.patch(url, payload);
+    return response;
+  },
+
   async deleteStudent (student_id) {
     const url = `api/student/${student_id}`;
     const response = await Axios.delete(url);

@@ -26,11 +26,11 @@ const Navbar = () => {
   return (
     <Header style={{ background: themeMode.bgColor, color: themeMode.color }}>
       <CDBNavbar dark expand="md" scrolling className="justify-content-start">
-        <CDBInput type="search" size="md" hint="Search" className="mb-n4 mt-n3 input-nav" />
+        {/* <CDBInput type="search" size="md" hint="Search" className="mb-n4 mt-n3 input-nav" /> */}
         <div className="ml-auto">
           <i className={`${darkMode ? "zmdi zmdi-brightness-5" : "zmdi zmdi-brightness-6"}`} onClick={handleThemeToggle} style={{ fontSize: '30px' }}></i>
           <i className="zmdi zmdi-power mx-3" onClick={handleLogout} style={{ marginTop: '10px', fontSize: '35px' }}></i>
-          <img alt="panelImage" src="img/pane/pane4.png" style={{ width: "3rem", height: "3rem" }} />
+          {/* <img alt="panelImage" src="img/pane/pane4.png" style={{ width: "3rem", height: "3rem" }} /> */}
         </div>
       </CDBNavbar>
     </Header>
