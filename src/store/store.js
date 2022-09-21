@@ -11,6 +11,6 @@ export default configureStore({
     students: studentReducer,
     staff: staffReducer,
     student: studentProfileSlice,
-    staff: staffProfileSlice
+    staffProfile: staffProfileSlice
   },
 });

@@ -1,0 +1,45 @@
+.studentProfile .student-body {
+  margin-top: 30px;
+}
+
+.studentProfile .profile-info {
+  display: flex;
+  gap: 30px;
+
+}
+
+.studentProfile .img-container {
+  position: relative;
+  width: 50%;
+}
+
+.studentProfile .img-container img {
+  height: 200px;
+  width: 200px;
+
+  /* border-radius: 300px; */
+}
+
+.studentProfile .img-container .changePhoto-btn {
+  position: absolute;
+  width: 200px;
+  top: 70%;
+  left: 0%;
+}
+
+.student-details {
+  height: 300px;
+  min-width: 60%;
+  border-radius: 30px;
+  box-shadow: 3px 3px 5px #2C3891;
+}
+
+@media only screen and (max-width: 750px) {
+  .studentProfile .profile-info {
+    display: block;
+  }
+
+  .studentProfile .main {
+    display: block;
+  }
+}
